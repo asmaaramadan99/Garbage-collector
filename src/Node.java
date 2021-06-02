@@ -12,7 +12,7 @@ public class Node implements INode {
         this.id = id;
         this.heapEndIndex = heapEndIndex;
         this.heapStartIndex = heapStartIndex;
-        this.size = heapEndIndex - heapStartIndex + 1;
+        this.size = heapEndIndex - heapStartIndex ;
     }
 
     @Override

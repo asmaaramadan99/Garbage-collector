@@ -11,10 +11,12 @@ public class Main {
         CopyGC c= new CopyGC();
       ArrayList<INode> roots= f.readRoots();
       c.setRoots(roots);
-      c.copy();
+      c.garbageCollect();
       for (INode node: c.getCopied())
       {
           System.out.println(node.getID());
+          System.out.println(node.getHeapStartIndex());
+          System.out.println(node.getHeapEndIndex());
            //g.dfs(node);
       }
 

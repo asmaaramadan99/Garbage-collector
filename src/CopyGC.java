@@ -25,7 +25,8 @@ public class CopyGC implements GarbageCollector{
 
     @Override
     public void garbageCollect() {
-
+        copy();
+        collect();
     }
     public void copy(){
         for (int i=0;i<roots.size();i++){
@@ -39,6 +40,14 @@ public class CopyGC implements GarbageCollector{
                     copied.add(n);
             }
             i++;
+        }
+    }
+    public void collect(){
+        copied.get(0).setHeapStartIndex(0);
+        copied.get(0).setHeapEndIndex(copied.get(0).getSize());
+        for (int i=1;i<copied.size();i++){
+            copied.get(i).setHeapStartIndex(1+copied.get(i-1).getHeapEndIndex());
+            copied.get(i).setHeapEndIndex(copied.get(i).getHeapStartIndex()+(copied.get(i).getSize()));
         }
     }
 }
