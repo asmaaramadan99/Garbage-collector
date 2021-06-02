@@ -3,6 +3,15 @@ import java.util.ArrayList;
 public class CopyGC implements GarbageCollector{
 
     private ArrayList<INode> roots = new ArrayList<>();
+
+    public ArrayList<INode> getCopied() {
+        return copied;
+    }
+
+    public void setCopied(ArrayList<INode> copied) {
+        this.copied = copied;
+    }
+
     private ArrayList<INode> copied = new ArrayList<>();
 
 

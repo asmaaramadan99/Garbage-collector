@@ -7,15 +7,19 @@ public class Main {
         FileManager f=FileManager.getInstance();
         HashMap<String,INode> n=f.getHeapObjects();
         f.readPointers();
-        MarkAndCompactGC g=new MarkAndCompactGC();
+        //MarkAndCompactGC g=new MarkAndCompactGC();
+        CopyGC c= new CopyGC();
       ArrayList<INode> roots= f.readRoots();
-      for (INode node: roots)
+      c.setRoots(roots);
+      c.copy();
+      for (INode node: c.getCopied())
       {
-           g.dfs(node);
+          System.out.println(node.getID());
+           //g.dfs(node);
       }
 
-      System.out.println(n.get("555555").isMarked());
-        System.out.println(n.get("444444").isMarked());
+      //System.out.println(n.get("555555").isMarked());
+      //System.out.println(n.get("444444").isMarked());
 
     }
 }
