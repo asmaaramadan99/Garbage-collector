@@ -1,3 +1,7 @@
+package modules;
+
+import interfaces.INode;
+
 import java.util.ArrayList;
 
 public class Node implements INode {

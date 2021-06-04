@@ -1,6 +1,11 @@
+package modules;
+
+import interfaces.GarbageCollector;
+import interfaces.INode;
+
 import java.util.ArrayList;
 
-public class CopyGC implements GarbageCollector{
+public class CopyGC implements GarbageCollector {
 
     private ArrayList<INode> roots = new ArrayList<>();
 
@@ -24,10 +29,13 @@ public class CopyGC implements GarbageCollector{
     }
 
     @Override
-    public void garbageCollect() {
+    public ArrayList<INode> garbageCollect() {
         copy();
         collect();
+        return copied;
     }
+
+
     public void copy(){
         for (int i=0;i<roots.size();i++){
             copied.add(roots.get(i));
