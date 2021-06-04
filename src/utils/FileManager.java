@@ -3,9 +3,7 @@ package utils;
 import interfaces.INode;
 import modules.Node;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -71,6 +69,31 @@ public class FileManager {
         }
         csvReader.close();
         return heap;
+    }
+    public static void writeToCsv(String absolutePath,ArrayList<INode> newHeap)
+    {
+
+        try (PrintWriter writer = new PrintWriter(new File(absolutePath))) {
+           for(INode node : newHeap) {
+               StringBuilder sb = new StringBuilder();
+               sb.append(node.getID());
+               sb.append(',');
+               sb.append(node.getHeapStartIndex());
+               sb.append(",");
+               sb.append(node.getHeapEndIndex());
+               sb.append('\n');
+               writer.write(sb.toString());
+
+               System.out.println("done!");
+           }
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+
     }
 
 }
